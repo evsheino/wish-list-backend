@@ -13,16 +13,11 @@ import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
+SECRET_KEY = os.environ['DEBUG']
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '^@g@rf2z(9@ngho^49#-v5u@jmrl@ok8&pab+o&fwx%-2_1u*1'
-
-# SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ['DEBUG']
 
-TEMPLATE_DEBUG = os.environ['DEBUG']
+TEMPLATE_DEBUG = os.environ['TEMPLATE_DEBUG']
 
 ALLOWED_HOSTS = []
 
@@ -58,16 +53,6 @@ ROOT_URLCONF = 'wishlistsite.urls'
 WSGI_APPLICATION = 'wishlistsite.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/1.7/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
-
 # Internationalization
 # https://docs.djangoproject.com/en/1.7/topics/i18n/
 
@@ -81,9 +66,21 @@ USE_L10N = True
 
 USE_TZ = True
 
+DATE_INPUT_FORMATS = (
+    '%d.%m.%Y',
+    '%Y-%m-%d', '%m/%d/%Y', '%m/%d/%y', # '2006-10-25', '10/25/2006', '10/25/06'
+    '%b %d %Y', '%b %d, %Y',            # 'Oct 25 2006', 'Oct 25, 2006'
+    '%d %b %Y', '%d %b, %Y',            # '25 Oct 2006', '25 Oct, 2006'
+    '%B %d %Y', '%B %d, %Y',            # 'October 25 2006', 'October 25, 2006'
+    '%d %B %Y', '%d %B, %Y',            # '25 October 2006', '25 October, 2006'
+)
+
+DATE_FORMAT = 'd.m.Y'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
+
+DATABASES = {}
 
 # Parse database configuration from $DATABASE_URL
 import dj_database_url
