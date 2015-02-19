@@ -1,3 +1,6 @@
 from django.contrib import admin
+from lists.models import Gift, Purchase, Category
 
-# Register your models here.
+admin.site.register(Gift)
+admin.site.register(Purchase)
+admin.site.register(Category)

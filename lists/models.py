@@ -4,6 +4,11 @@ from model_utils import Choices
 from model_utils.models import TimeStampedModel
 from model_utils.managers import InheritanceManager
 
+class Category(models.Model):
+    """ Represents the different types of gifts. """
+
+    name = models.CharField(max_length=50)
+
 class Gift(TimeStampedModel):
     """ An item a user wishes to receive as a gift. """
 
@@ -15,20 +20,13 @@ class Gift(TimeStampedModel):
     author = models.CharField(max_length=500)
     comment = models.CharField(max_length=1000)
 
-    # A link to an outside page with e.g. information regarding the gift
+    # A link to an outside page with e.g. information regarding the item
     link = models.CharField(max_length=500)
 
 
-class Purchase(TimeStampedModel)
+class Purchase(TimeStampedModel):
     """ Represents a purchase of a gift for a user by another user. """
 
     gift = models.ForeignKey(Gift)
     user = models.ForeignKey(User)
     comment = models.CharField(max_length=1000)
-
-
-class Category(models.Model):
-    """ Represents the different types of gifts. """
-
-    name = CharField(max_length=50)
-
