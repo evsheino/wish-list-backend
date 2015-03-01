@@ -22,7 +22,5 @@ class GiftWithPurchasesSerializer(serializers.ModelSerializer):
         model = Gift
 
 class UserSerializer(serializers.ModelSerializer):
-    gifts = GiftSerializer(many=True)
-
     class Meta:
         model = User
