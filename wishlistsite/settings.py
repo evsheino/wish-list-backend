@@ -32,11 +32,9 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'foundation',
-    'crispy_forms',
-    'crispy_forms_foundation',
-    'djangular',
+    'rest_framework',
     'lists',
+    'corsheaders',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -48,6 +46,8 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
+
+CORS_ORIGIN_ALLOW_ALL = True
 
 ROOT_URLCONF = 'wishlistsite.urls'
 
