@@ -26,9 +26,10 @@ class UserViewSet(viewsets.ReadOnlyModelViewSet):
         List purchases as well for authenticated non-owner users.
         """
 
-        serializer_class = GiftWithPurchasesSerializer if request.auth and obj != request.user else GiftSerializer
+        obj = self.get_object()
+        serializer_class = GiftWithPurchasesSerializer if request.user.is_authenticated() else GiftSerializer
 
-        return Response(serializer_class(self.get_object().gifts, many=True, context={'request': request}).data)
+        return Response(serializer_class(obj.gifts, many=True, context={'request': request}).data)
 
     @detail_route()
     def purchases(self, request, pk, *args, **kwargs):
