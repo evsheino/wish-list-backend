@@ -20,10 +20,10 @@ class GiftWithPurchasesSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Gift
-        fields = ('url', 'created', 'modified', 'name', 'author', 'comment',
+        fields = ('id', 'created', 'modified', 'name', 'author', 'comment',
                 'link', 'user', 'category', 'purchases',)
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ('url', 'id', 'username', 'first_name', 'last_name')
+        fields = ('id', 'username', 'first_name', 'last_name')
