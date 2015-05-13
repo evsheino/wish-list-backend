@@ -10,6 +10,8 @@ https://docs.djangoproject.com/en/1.7/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+import datetime
+
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 
@@ -18,8 +20,6 @@ SECRET_KEY = os.environ['DEBUG']
 DEBUG = os.environ['DEBUG']
 
 TEMPLATE_DEBUG = os.environ['TEMPLATE_DEBUG']
-
-ALLOWED_HOSTS = []
 
 SECRET_KEY = os.environ['SECRET_KEY']
 
@@ -54,6 +54,11 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.BasicAuthentication',
         'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
     ),
+}
+
+JWT_AUTH = { 
+    'JWT_ALLOW_REFRESH': True,
+    'JWT_EXPIRATION_DELTA': datetime.timedelta(days=1)
 }
 
 CORS_ORIGIN_ALLOW_ALL = True

@@ -9,6 +9,7 @@ router.register('gifts', views.GiftViewSet)
 router.register('purchases', views.PurchaseViewSet, base_name='purchases')
 
 urlpatterns = [
+    url(r'^api-token-refresh/', 'rest_framework_jwt.views.refresh_jwt_token'),
     url(r'^', include(router.urls)),
     url(r'^users/(?P<user_pk>[0-9]+)/gifts/(?P<pk>[0-9]+)/$', 
         views.GiftViewSet.as_view({
