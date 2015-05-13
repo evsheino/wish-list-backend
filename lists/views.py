@@ -20,18 +20,6 @@ class UserViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = UserSerializer
 
     @detail_route()
-    def gifts(self, request, pk, *args, **kwargs):
-        """
-        List the user's gift wishes.
-        List purchases as well for authenticated non-owner users.
-        """
-
-        obj = self.get_object()
-        serializer_class = GiftWithPurchasesSerializer if request.user.is_authenticated() else GiftSerializer
-
-        return Response(serializer_class(obj.gifts, many=True, context={'request': request}).data)
-
-    @detail_route()
     def purchases(self, request, pk, *args, **kwargs):
         """
         List the user's purchases.
@@ -48,6 +36,17 @@ class GiftViewSet(viewsets.ModelViewSet):
     queryset = Gift.objects.all()
     serializer_class = GiftSerializer
     permission_classes = (permissions.IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly,)
+
+    def list_user_gifts(self, request, user_pk, *args, **kwargs):
+        """
+        List the user's gift wishes.
+        List purchases as well for authenticated non-owner users.
+        """
+
+        obj = User.objects.get(pk=user_pk)
+        serializer_class = GiftWithPurchasesSerializer if request.user.is_authenticated() else GiftSerializer
+
+        return Response(serializer_class(obj.gifts, many=True, context={'request': request}).data)
 
 
 class PurchaseViewSet(viewsets.ModelViewSet):
