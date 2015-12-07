@@ -56,4 +56,3 @@ class PurchaseViewSet(viewsets.ModelViewSet):
     def get_queryset(self):
         # Exclude purchases that are for gifts of the current user.
         return Purchase.objects.exclude(gift__user=self.request.user)
-

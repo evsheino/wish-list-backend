@@ -1,8 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
-from model_utils import Choices
 from model_utils.models import TimeStampedModel
-from model_utils.managers import InheritanceManager
+
 
 class Category(models.Model):
     """ Represents the different types of gifts. """
@@ -11,6 +10,7 @@ class Category(models.Model):
 
     def __str__(self):
         return self.name
+
 
 class Gift(TimeStampedModel):
     """ An item a user wishes to receive as a gift. """
